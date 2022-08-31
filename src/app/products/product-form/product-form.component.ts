@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { Product } from '../model/product';
 import { ProductsService } from './../services/products.service';
 
 @Component({
@@ -11,24 +12,21 @@ import { ProductsService } from './../services/products.service';
 })
 export class ProductFormComponent implements OnInit {
 
-  form: UntypedFormGroup;
+  form = this.formBuilder.group({
+    name: [''],
+    quantity: [0]
+  });
 
   constructor(
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: NonNullableFormBuilder,
     private service: ProductsService,
     private dialog: MatDialog,
-  ) {
-    this.form = this.formBuilder.group({
-      name: [null],
-      quantity: [null]
-    });
-  }
+  ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   onSubmit() {
-    this.service.create(this.form.value).subscribe({
+    this.service.create(this.form.value as Product).subscribe({
       next: result => console.log(result),
       error: error => {
         this.dialog.open(ErrorDialogComponent, { data: 'Error on create product' });

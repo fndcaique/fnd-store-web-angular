@@ -21,7 +21,7 @@ export class ProductsService {
       );
   }
 
-  create(product: Product) {
+  create(product: Partial<Product>) {
     return this.httpClient.post<Product>(this.API, product)
       .pipe(take(1));
   }
