@@ -20,4 +20,8 @@ export class ProductsService {
         tap(products => console.log(products))
       );
   }
+
+  create(product: Product) {
+    return this.httpClient.post<Product>(this.API, product);
+  }
 }

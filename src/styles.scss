@@ -4,11 +4,14 @@
 
 $custom-app-primary: mat-palette($mat-indigo, 900);
 $custom-app-secundary: mat-palette($mat-blue, A200, A400, 700);
-$custom-app-warn: mat-palette($mat-amber);
+$custom-app-warn: mat-palette($mat-red);
 
 $custom-theme: mat-dark-theme($custom-app-primary, $custom-app-secundary, $custom-app-warn);
 
 @include angular-material-theme($custom-theme);
 
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+  background-color: grey;
+ }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -38,6 +38,32 @@
           *matCellDef="let product"
         > {{product.quantity}} </td>
       </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button
+            mat-mini-fab
+            color="accent"
+            aria-label="Add a product"
+          >
+            <mat-icon (click)="onAdd()">add</mat-icon>
+          </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          <button
+            mat-mini-fab
+            color="primary"
+            aria-label="Edit product"
+          >
+            <mat-icon>edit</mat-icon>
+          </button><button
+            mat-mini-fab
+            color="warn"
+            aria-label="Delete product"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
       <tr
         mat-header-row
         *matHeaderRowDef="displayedColumns"
