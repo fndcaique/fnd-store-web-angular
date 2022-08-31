@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { catchError, Observable, of } from 'rxjs';
 import { Product } from '../model/product';
+import { ProductsService } from '../services/products.service';
+import { ErrorDialogComponent } from './../../shared/components/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-products',
@@ -8,22 +12,32 @@ import { Product } from '../model/product';
 })
 export class ProductsComponent implements OnInit {
 
-  products: Product[] = [
-    {
-      id: 1,
-      name: 'Product 1',
-      quantity: 1
-    }
-  ];
+  products$: Observable<Product[]>;
   displayedColumns = ['id', 'name', 'quantity'];
 
 
-  constructor() {
+  constructor(
+    private productsService: ProductsService,
+    public dialog: MatDialog
+  ) {
     /* TODO document why this constructor is empty */
+    this.products$ = this.productsService.findAll()
+      .pipe(
+        catchError(error => {
+          this.onError('Error on load products')
+          return of([]);
+        })
+      );
   }
 
   ngOnInit(): void {
     // TODO document why this method 'ngOnInit' is empty
+  }
+
+  onError(errorMessage: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMessage
+    })
   }
 
 }
