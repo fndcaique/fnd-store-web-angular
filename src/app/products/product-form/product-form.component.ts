@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { ProductsService } from './../services/products.service';
@@ -11,10 +11,10 @@ import { ProductsService } from './../services/products.service';
 })
 export class ProductFormComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private service: ProductsService,
     private dialog: MatDialog,
   ) {
@@ -32,7 +32,9 @@ export class ProductFormComponent implements OnInit {
       next: result => console.log(result),
       error: error => {
         this.dialog.open(ErrorDialogComponent, { data: 'Error on create product' });
-      }
+      },
+      complete: () => console.log('completed'),
+
     });
   }
 
