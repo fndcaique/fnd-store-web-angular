@@ -1,0 +1,40 @@
+<mat-card class="min-width">
+  <mat-toolbar color="primary">Product details</mat-toolbar>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <mat-form-field class="full-width">
+        <!-- <mat-label>Enter your email</mat-label> -->
+        <input
+          matInput
+          placeholder="Product name"
+          formControlName="name"
+          required
+        >
+        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <!-- <mat-label>Enter your email</mat-label> -->
+        <input
+          matInput
+          placeholder="Product quantity"
+          formControlName="quantity"
+          type="number"
+          required
+        >
+        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      (click)="onCancel()"
+    >Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="onSubmit()"
+    >Submit</button>
+  </mat-card-actions>
+</mat-card>
