@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, take, tap } from 'rxjs';
+import { take } from 'rxjs';
 import { Product } from '../model/product';
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,6 @@ export class ProductsService {
       .pipe(
         // first(),
         take(1),
-        delay(2000),
-        tap(products => console.log(products))
       );
   }
 

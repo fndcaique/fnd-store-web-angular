@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,13 +22,14 @@ export class ProductFormComponent implements OnInit {
     private formBuilder: NonNullableFormBuilder,
     private service: ProductsService,
     private dialog: MatDialog,
+    private location: Location,
   ) { }
 
   ngOnInit(): void { }
 
   onSubmit() {
     this.service.create(this.form.value as Product).subscribe({
-      next: result => console.log(result),
+      next: result => this.location.back(),
       error: error => {
         this.dialog.open(ErrorDialogComponent, { data: 'Error on create product' });
       },
@@ -37,7 +39,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   onCancel() {
-
+    this.location.back();
   }
 
 }
