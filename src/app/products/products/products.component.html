@@ -2,8 +2,9 @@
   <mat-toolbar color="primary">Products</mat-toolbar>
   <div class="mat-elevation-z8 flex-column">
     <app-products-table
-      *ngIf="products$ | async as products; else loading"
+      *ngIf="!isLoading; else loading"
       [products]="products"
+      (delete)="onDelete($event)"
     ></app-products-table>
     <ng-template #loading>
       <div class="loading-spinner">

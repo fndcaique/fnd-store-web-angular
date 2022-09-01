@@ -23,4 +23,8 @@ export class ProductsService {
     return this.httpClient.post<Product>(this.API, product)
       .pipe(take(1));
   }
+
+  delete(id: number) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(take(1));
+  }
 }
