@@ -1,11 +1,22 @@
-<div>
-  <form>
-    <label for="login">
-      <input
-        id="login"
-        type="text"
+<div class="form-container">
+  <mat-card>
+    <form (ngSubmit)="onSubmit()">
+      <h1>Sign form</h1>
+      <mat-form-field
+        class="example-full-width"
+        appearance="fill"
       >
-    </label>
-    <button>Entrar</button>
-  </form>
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          placeholder="fndcaique"
+          [formControl]="username"
+        >
+      </mat-form-field>
+      <button
+        mat-flat-button
+        color="primary"
+      >Submit</button>
+    </form>
+  </mat-card>
 </div>
