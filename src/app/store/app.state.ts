@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store';
+import { createAction, createReducer, on, props } from '@ngrx/store';
 
 export interface AppState {
   username: string;
@@ -13,22 +13,14 @@ enum ActionTypes {
   logout = '@user/logout',
 }
 
-export class LoginAction implements Action {
-  type = ActionTypes.login;
-  constructor(public payload: string) { }
-}
+export const loginAction = createAction(
+  ActionTypes.login,
+  props<{ username: string }>(),
+);
 
-export class LogoutAction implements Action {
-  type = ActionTypes.logout;
-}
+export const logoutAction = createAction(ActionTypes.logout);
 
-export const appReducer = (state = APP_INITIAL_STATE, action: Action) => {
-  switch (action.type) {
-    case ActionTypes.login:
-      return { username: (action as LoginAction).payload }
-    case ActionTypes.logout:
-      return { username: '' }
-    default:
-      return state;
-  }
-}
+export const appReducer = createReducer(
+  APP_INITIAL_STATE,
+  on(loginAction, (_state, { username }) => ({ username }))
+);

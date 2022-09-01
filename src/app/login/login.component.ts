@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { LoginAction } from '../store/app.state';
+import { loginAction } from '../store/app.state';
 
 
 
@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log('on Submit', this.username.value);
-    this.store.dispatch(new LoginAction(this.username.value));
+    this.store.dispatch(loginAction({
+      username: this.username.value
+    }));
   }
 }
