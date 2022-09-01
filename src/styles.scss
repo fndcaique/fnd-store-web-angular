@@ -10,8 +10,23 @@ $custom-theme: mat-dark-theme($custom-app-primary, $custom-app-secundary, $custo
 
 @include angular-material-theme($custom-theme);
 
-html, body {
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html,
+body {
   height: 100%;
   background-color: grey;
- }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+}
+
+body {
+  font-size: 100%;
+  list-style-type: none;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
